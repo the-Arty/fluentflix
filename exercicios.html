@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios - FluentFlix</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="page-exercicios">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <h1 class="logo">Fluent<span class="highlight">Flix</span></h1>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="trilhas.html">Trilhas</a>
+                <a href="lista.html">Minha Lista</a>
+                <a href="exercicios.html" class="active">Exercícios</a>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <div class="user-profile">
+                <span>Engage User</span><div class="avatar">EB</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="quiz-container" id="quizContainer">
+        <!-- Renderizado via app.js -->
+        <h2 class="page-title text-center">Treinamento Interativo</h2>
+        <div class="quiz-card" id="quizCard">
+            <div class="quiz-progress">Questão <span id="currentQ">1</span> de <span id="totalQ">X</span></div>
+            <h3 class="quiz-question" id="quizQuestion">Carregando...</h3>
+            <div class="quiz-options" id="quizOptions"></div>
+        </div>
+        <div class="quiz-result" id="quizResult" style="display: none;">
+            <h3>Você concluiu o treinamento! 🚀</h3>
+            <p>Sua pontuação: <span id="scoreText" class="highlight"></span></p>
+            <button class="btn btn-primary" style="margin-top:20px" onclick="location.reload()">Refazer Exercícios</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

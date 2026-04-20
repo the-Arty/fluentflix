@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluentFlix - Watch. Learn. Speak.</title>
+    <meta name="description" content="Learn English with a Netflix-style platform. Immersive streaming experience.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <h1 class="logo">Fluent<span class="highlight">Flix</span></h1>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="trilhas.html">Trilhas</a>
+                <a href="lista.html">Minha Lista</a>
+                <a href="exercicios.html">Exercícios</a>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar cursos...">
+            </div>
+            <div class="user-profile">
+                <span>Engage User</span>
+                <div class="avatar">EB</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
+        <div class="hero-content">
+            <h2 class="hero-title" id="heroTitle">English for Business</h2>
+            <div class="hero-meta">
+                <span class="match">98% Relevante</span>
+                <span class="level badge">Intermediário</span>
+                <span class="duration">12h 45m</span>
+            </div>
+            <p class="hero-desc" id="heroDesc">Domine o vocabulário executivo e ganhe confiança nas reuniões com gringos. Uma jornada imersiva pelo mundo corporativo.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">▶ Assistir Aula 1</button>
+                <button class="btn btn-secondary">ⓘ Mais Informações</button>
+            </div>
+        </div>
+        <div class="hero-vignette"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content-rows" id="courseContainer">
+        <!-- Rows will be injected by JavaScript -->
+    </main>
+
+    <!-- Modal Video Player -->
+    <div class="video-modal" id="videoModal" style="display: none;">
+        <div class="video-content">
+            <span class="close-btn" onclick="closeVideo()">&times; Fechar</span>
+            <div class="video-wrapper">
+                <iframe id="youtubeFrame" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
