@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula - FluentFlix</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body id="page-aula">
+    <!-- Navbar -->
+    <header class="navbar" style="background-color: var(--bg-dark);">
+        <div class="nav-left">
+            <h1 class="logo">Fluent<span class="highlight">Flix</span></h1>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="trilhas.html">Trilhas</a>
+                <a href="lista.html">Minha Lista</a>
+                <a href="exercicios.html">Exercícios</a>
+            </nav>
+        </div>
+        <div class="nav-right">
+            <div class="user-profile">
+                <span>Engage User</span><div class="avatar">EB</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="watch-layout">
+        <!-- Player Container (Left / 70%) -->
+        <main class="watch-main">
+            <div class="video-container">
+                <iframe id="mainVideoFrame" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+            
+            <div class="lesson-header">
+                <span class="badge" id="moduleTitle">Módulo</span>
+                <h2 id="lessonTitle">Carregando...</h2>
+            </div>
+            
+            <div class="lesson-tabs">
+                <span class="tab active">Comentários</span>
+                <span class="tab">Visão Geral</span>
+                <span class="tab">Materiais</span>
+            </div>
+            
+            <!-- Comentários Section -->
+            <div class="comments-section">
+                <!-- Caixa de Comentar -->
+                <div class="comment-composer">
+                    <div class="avatar mini-avatar">EB</div>
+                    <input type="text" placeholder="Adicione um comentário..." id="newCommentInput">
+                    <button class="btn btn-primary" onclick="postComment()" style="padding: 8px 16px;">Comentar</button>
+                </div>
+                
+                <!-- Lista de Comentários Simulada -->
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-item">
+                        <div class="avatar mini-avatar" style="background:#444">A</div>
+                        <div class="comment-body">
+                            <strong>Alex Sandro</strong>
+                            <p>Excelente aula! Esse formato de vocabulário ficou muito mais fácil de memorizar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Sidebar Playlist (Right / 30%) -->
+        <aside class="playlist-sidebar">
+            <div class="sidebar-header">
+                <h3>Aulas do Módulo</h3>
+                <p>Continue na mesma trilha</p>
+            </div>
+            <div class="playlist-items" id="playlistContainer">
+                <!-- Renderizado pelo app.js baseado na categoria/Modulo -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Script Extra para a caixa de Comentários Estática -->
+    <script>
+        function postComment() {
+            const input = document.getElementById('newCommentInput');
+            const val = input.value.trim();
+            if(val) {
+                const list = document.getElementById('commentsList');
+                const html = `
+                    <div class="comment-item">
+                        <div class="avatar mini-avatar">EB</div>
+                        <div class="comment-body">
+                            <strong>Engage User</strong>
+                            <p>${val}</p>
+                        </div>
+                    </div>
+                `;
+                list.insertAdjacentHTML('afterbegin', html);
+                input.value = '';
+            }
+        }
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

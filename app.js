@@ -44,13 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         card.addEventListener('click', () => {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('youtubeFrame');
-            if(modal && iframe) {
-                const videoId = course.youtubeId || 'dQw4w9WgXcQ'; 
-                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                modal.style.display = 'flex';
-            }
+            window.location.href = `aula.html?id=${course.id}`;
         });
 
         return card;
@@ -179,14 +173,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-});
+    // 5. RENDERIZAÇÃO DA PÁGINA ESPECÍFICA DA AULA (aula.html)
+    if (document.getElementById('page-aula')) {
+        const params = new URLSearchParams(window.location.search);
+        const courseId = parseInt(params.get('id'));
 
-// Função para fechar o modal chamada pelo HTML
-function closeVideo() {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('youtubeFrame');
-    if(modal && iframe) {
-        modal.style.display = 'none';
-        iframe.src = ''; // Limpa o src para parar o audio do vídeo
+        if (!courseId) {
+            window.location.href = 'index.html'; // Fallback
+            return;
+        }
+
+        const currentCourse = fluentFlixData.courses.find(c => c.id === courseId);
+        
+        if (currentCourse) {
+            // Renderiza Vídeo
+            const iframe = document.getElementById('mainVideoFrame');
+            const vId = currentCourse.youtubeId || 'dQw4w9WgXcQ';
+            iframe.src = `https://www.youtube.com/embed/${vId}?autoplay=1`;
+
+            // Renderiza Titulo
+            document.getElementById('moduleTitle').textContent = `Módulo: ${currentCourse.level}`;
+            document.getElementById('lessonTitle').textContent = currentCourse.title;
+
+            // Renderiza Sidebar Playlist baseada na "categoria" deste curso (Agrupa pelo mesmo modulo)
+            const playlistContainer = document.getElementById('playlistContainer');
+            const relatedCourses = fluentFlixData.courses.filter(c => c.category === currentCourse.category);
+            
+            relatedCourses.forEach(related => {
+                const item = document.createElement('div');
+                item.className = 'playlist-item';
+                // Destaque para o curso que o usuário está atualmente assistindo
+                if (related.id === courseId) {
+                    item.classList.add('active');
+                }
+                
+                item.innerHTML = `
+                    <div class="thumb-mini"><img src="${related.imgUrl}" alt="${related.title}"></div>
+                    <div class="details">
+                        <h4>${related.title}</h4>
+                        <span>${related.duration}</span>
+                    </div>
+                `;
+                
+                item.addEventListener('click', () => {
+                    window.location.href = `aula.html?id=${related.id}`;
+                });
+                
+                playlistContainer.appendChild(item);
+            });
+        }
     }
-}
+
+});
