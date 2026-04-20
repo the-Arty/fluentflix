@@ -21,8 +21,54 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Substitui os cursos chumbados no código pelos do Banco de Dados Dinâmico!
         fluentFlixData.courses = dbCourses;
+
+        // Se estivermos na home, inciamos o painel hero dinamico
+        if (document.getElementById('courseContainer')) {
+            initHeroCarousel(dbCourses);
+        }
     } catch (e) {
         console.error("Erro ao puxar dados do DB ou rodando puramente localmente:", e);
+    }
+    
+    // ==========================================
+    // HERO CAROUSEL LOGIC
+    // ==========================================
+    function initHeroCarousel(courses) {
+        const heroSection = document.getElementById('heroSection');
+        const heroTitle = document.getElementById('heroTitle');
+        const heroDesc = document.getElementById('heroDesc');
+        const btnWatch = document.querySelector('.hero-buttons .btn-primary');
+        const durationSpan = document.querySelector('.hero-meta .duration');
+        const levelBadge = document.querySelector('.hero-meta .level');
+
+        if (!heroSection || courses.length === 0) return;
+
+        let currentIndex = 0;
+        
+        function updateHero() {
+            const course = courses[currentIndex];
+            
+            // Sucesso cross-fade basico
+            heroSection.style.transition = 'background-image 1s ease-in-out';
+            heroSection.style.backgroundImage = `url('${course.imgUrl}')`;
+            heroTitle.innerText = course.title;
+            heroDesc.innerText = `Um curso focado na categoria ${course.category}. Aproveite e comece a estudar agora.`;
+            durationSpan.innerText = course.duration;
+            levelBadge.innerText = course.level;
+            
+            // Ao clicar em Assistir, vai pra aula específica
+            btnWatch.onclick = () => {
+                window.location.href = `aula.html?id=${course.id}`;
+            };
+
+            currentIndex = (currentIndex + 1) % courses.length;
+        }
+
+        // Rodar a primeira vez imediatamente
+        updateHero();
+        
+        // Rotacionar a cada 6 segundos
+        setInterval(updateHero, 6000);
     }
 
     // ==========================================
