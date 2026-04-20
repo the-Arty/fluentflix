@@ -2,7 +2,7 @@
  * APP.JS - Lógica de Rendering e Interação
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 
     // Efeito de sombra na Navbar ao dar scroll
     window.addEventListener('scroll', () => {
@@ -13,6 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('scrolled');
         }
     });
+
+    // 🔴 FETCH INICIAL DO BACKEND (PYTHON/FLASK DB)
+    try {
+        const response = await fetch('/api/cursos');
+        const dbCourses = await response.json();
+        
+        // Substitui os cursos chumbados no código pelos do Banco de Dados Dinâmico!
+        fluentFlixData.courses = dbCourses;
+    } catch (e) {
+        console.error("Erro ao puxar dados do DB ou rodando puramente localmente:", e);
+    }
 
     // ==========================================
     // LÓGICA DE RENDERIZAÇÃO
