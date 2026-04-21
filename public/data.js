@@ -15,7 +15,7 @@ const fluentFlixData = {
         { id: "conversational", title: "Conversational English" },
         { id: "prep", title: "TOEFL/IELTS Prep" }
     ],
-    
+
     // Lista de todos os cursos disponíveis
     courses: [
         {
@@ -24,9 +24,9 @@ const fluentFlixData = {
             category: "continue",
             level: "Avançado",
             duration: "45 min",
-            progress: 60, // Porcentagem assistida (ex: 60%)
+            progress: 0, // Porcentagem assistida (ex: 60%)
             imgUrl: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
-            youtubeId: "vBqJ9gV39B4",
+            youtubeId: "sQWzJY3Z6Zs",
             saved: true // Para aparecer na Minha Lista
         },
         {
@@ -37,17 +37,19 @@ const fluentFlixData = {
             duration: "1h 20m",
             progress: 30,
             imgUrl: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80",
-            youtubeId: "17l7C_WbU2g",
+            youtubeId: "sQWzJY3Z6Zs",
             saved: true
         },
         {
             id: 3,
-            title: "English for Meetings",
+            title: "1155 et",
             category: "business",
             level: "Intermediário",
             duration: "2h",
             progress: 0,
-            imgUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80"
+            imgUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+            youtubeId: "ITtZE5RjFP4",
+            saved: true
         },
         {
             id: 4,

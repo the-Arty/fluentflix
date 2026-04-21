@@ -2,7 +2,36 @@
  * APP.JS - Lógica de Rendering e Interação
  */
 
+// LOGIC GUARD: Protege as páginas da aplicação
+const appPathname = window.location.pathname;
+const appUser = JSON.parse(localStorage.getItem('currentUser'));
+
+if (!appUser && !appPathname.includes('login.html')) {
+    // Se não estiver logado, bloqueia o carregamento e manda pro login
+    window.location.href = 'login.html';
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+
+    // LOGOUT LOGIC (Anexado aos avatares disponíveis na barra)
+    const userProfiles = document.querySelectorAll('.user-profile');
+    userProfiles.forEach(profile => {
+        if(appUser && appUser.name) {
+            const nameSpan = profile.querySelector('span');
+            const avatarDiv = profile.querySelector('.avatar');
+            if(nameSpan) nameSpan.innerText = appUser.name;
+            if(avatarDiv) avatarDiv.innerText = appUser.name.substring(0, 2).toUpperCase();
+        }
+        
+        profile.style.cursor = 'pointer';
+        profile.title = "Sair da Conta";
+        profile.addEventListener('click', () => {
+            if(confirm('Deseja realmente sair da conta?')) {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'login.html';
+            }
+        });
+    });
 
     // Efeito de sombra na Navbar ao dar scroll
     window.addEventListener('scroll', () => {
