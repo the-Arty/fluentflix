@@ -360,9 +360,56 @@ body {
 }
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-title { font-size: 40px; }
-    .card { min-width: 220px; height: 125px; }
+    body { padding-bottom: 70px; } /* Space for bottom nav */
+    .nav-links, .nav-right .user-profile span { display: none; }
+    .hero { height: 75vh; }
+    .hero-title { font-size: 32px; }
+    .hero-buttons { flex-direction: column; }
+    .btn { width: 100%; justify-content: center; }
+    .card { min-width: 180px; height: 110px; }
+    .page-container { padding: 90px 4% 80px 4%; }
+    .grid-container { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .grid-container .card { height: 100px; }
+    .watch-layout { height: auto; } /* Let it scroll natively on mobile */
+    .lesson-header h2 { font-size: 20px; }
+    
+    /* Bottom Nav Styles */
+    .mobile-bottom-nav {
+        display: flex !important;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-dark);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 1000;
+        padding: 12px 0 8px 0;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+    }
+    .mobile-bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 500;
+        gap: 6px;
+        transition: color 0.3s;
+    }
+    .mobile-bottom-nav a:hover, .mobile-bottom-nav a.active {
+        color: var(--text-main);
+    }
+    .mobile-bottom-nav svg {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+    }
+}
+@media (min-width: 769px) { 
+    .mobile-bottom-nav { display: none !important; }
 }
 
 /* =========================================================

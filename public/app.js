@@ -281,4 +281,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    // 6. RENDERIZAÇÃO DA BARRA INFERIOR MOBILE
+    const pathname = window.location.pathname;
+    if (!document.getElementById('mobileNav') && !pathname.includes('login') && !pathname.includes('admin')) {
+        const mobileNav = document.createElement('div');
+        mobileNav.id = 'mobileNav';
+        mobileNav.className = 'mobile-bottom-nav';
+        mobileNav.innerHTML = `
+            <a href="index.html" class="${pathname.includes('index') || pathname === '/' || pathname.endsWith('public/') ? 'active' : ''}">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Home
+            </a>
+            <a href="trilhas.html" class="${pathname.includes('trilhas') ? 'active' : ''}">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+                Trilhas
+            </a>
+            <a href="lista.html" class="${pathname.includes('lista') ? 'active' : ''}">
+                <svg viewBox="0 0 24 24"><path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v-4h4v-2h-4zM2 16h8v-2H2v2z"/></svg>
+                Lista
+            </a>
+            <a href="exercicios.html" class="${pathname.includes('exercicios') ? 'active' : ''}">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+                Exercícios
+            </a>
+        `;
+        document.body.appendChild(mobileNav);
+    }
+
 });
